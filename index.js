@@ -24,4 +24,4 @@ app.use("/checkString", checkStringRoute)
 app.use("/resetpassword", resetPassRoute)
 
 
-app.listen(process.env.PORT || 3001, () => console.log("Server is running at 3001"))
+app.listen(process.env.PORT || 3222, () => console.log("Server is running at 3222"))
