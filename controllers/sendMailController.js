@@ -19,7 +19,7 @@ const SendStringMail = async (req, res) => {
                 charset: 'alphabetic'
             });
 
-            const setRSinDB = await db.collection("users").updateOne({ email }, { $set: { random_string: generateString } })
+            const setRandomStringinDB = await db.collection("users").updateOne({ email }, { $set: { random_string: generateString } })
 
             let transport = nodemailer.createTransport({
                 service: "gmail",
@@ -35,7 +35,7 @@ const SendStringMail = async (req, res) => {
                 subject: "Password Reset Link",
                 text: `
                 Use the below link to reset your password:\n
-                http://localhost:3000/passwordresetform/${email}/${generateString}`
+                ${process.env.FRONTEND_URL}/passwordresetform/${email}/${generateString}`
             }
 
             transport.sendMail(mailOptions, (error, info) => {
